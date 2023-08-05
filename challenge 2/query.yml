@@ -1,0 +1,22 @@
+---
+- name: Query Instance Metadata - AWS
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Get Instance Metadata
+      uri:
+        url: "http://169.254.169.254/latest/dynamic/instance-identity/document"
+      register: metadata_response
+      failed_when: metadata_response.status != 200
+      changed_when: false
+
+    - name: Convert Metadata to JSON
+      set_fact:
+        metadata_json: "{{ metadata_response.json }}"
+      when: metadata_response.status == 200
+
+    - name: Display Instance Metadata
+      debug:
+        var: metadata_json
+      when: metadata_response.status == 200
