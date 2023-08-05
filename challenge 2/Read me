@@ -1,0 +1,20 @@
+We need to write code that will query the meta data of an instance within AWS or Azure or GCP
+and provide a json formatted output.
+The choice of language and implementation is up to you.
+Bonus Points
+The code allows for a particular data key to be retrieved individually
+Hints
+· Aws Documentation (https://docs.aws.amazon.com/)
+· Azure Documentation (https://docs.microsoft.com/en-us/azure/?product=featured)
+· Google Documentation (https://cloud.google.com/docs)
+
+soluiton:
+
+To query the metadata of an instance within AWS and provide a JSON formatted output using Ansible playbook, we'll use the Ansible uri module to make an HTTP request to the AWS instance metadata service.
+
+This playbook will make an HTTP request to the AWS instance metadata service, retrieve the response, and display the output in JSON format using the debug module
+
+Additionally, make sure you have Ansible installed on your system and AWS credentials properly configured.
+
+ # On the EC2 instance itself, verify that the instance metadata service is functioning correctly. You can use tools like curl or wget to manually fetch the metadata:
+# curl http://169.254.169.254/latest/dynamic/instance-identity/document
